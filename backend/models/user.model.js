@@ -1,5 +1,3 @@
-import { Schema } from "mongoose";
-
 const mongoose = require('mongoose');
 // All mongoose Schemas basically start the same
 const Schema = mongoose.Schema;

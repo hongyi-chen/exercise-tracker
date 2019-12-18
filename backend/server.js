@@ -19,7 +19,7 @@ app.use(express.json());
 const uri = process.env.ATLAS_URI;
 // passes in URI, where database is stored
 // also passes in flags to deal with MongoDB, just put these things in
-mongoose.connect(uri, { useNewUrlParse: true, useCreateIndex: true }
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
 const connection = mongoose.connection;
 // once the connection is established, this is what happens
@@ -28,8 +28,8 @@ connection.once('open', () => {
 })
 
 // require the files and then use the files
-const exercisesRouter = require('./routes/exercises.js');
-const usersRouter = require('./routes/users.js');
+const exercisesRouter = require('./routes/exercises');
+const usersRouter = require('./routes/users');
 
 // use the files
 app.use('/exercises', exercisesRouter);
