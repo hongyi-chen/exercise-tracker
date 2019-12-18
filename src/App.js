@@ -14,13 +14,15 @@ function App() {
     // we have a few components - e.g, Navbar, exerciselist, etc. 
     // path attribute is set to URL path, if you include these paths it'll go to the component
     <Router>
-      <Navbar/>
-      <br/>
-      <Route path="/" exact component = {ExercisesList} />
-      <Route path="/edit/:id" component = {EditExercise} />
-      <Route path="/create" component = {CreateExercise} />
-      <Route path="/user" component = {CreateUser} />
-    </Router>
+      <div className = "container"> 
+        <Navbar/>
+        <br/>
+        <Route path="/" exact component = {ExercisesList} />
+        <Route path="/edit/:id" component = {EditExercise} />
+        <Route path="/create" component = {CreateExercise} />
+        <Route path="/user" component = {CreateUser} />
+      </div>
+      </Router>
   );
 }
 
