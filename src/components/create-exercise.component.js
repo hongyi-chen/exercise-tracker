@@ -1,4 +1,5 @@
 import React, { Component  } from "react";
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,38 +26,46 @@ export default class CreateExercises extends Component{
     }
 
     // React lifecycle method, automatically calls right before anything displays onto page
-    componentDidMount(){
-        this.setState({
-            users: ['test user'],
-            username: 'test user'
-        })
-
-    }
-
+    componentDidMount() {
+        axios.get('http://localhost:5000/users/')
+          .then(response => {
+            if (response.data.length > 0) {
+              this.setState({
+                users: response.data.map(user => user.username),
+                username: response.data[0].username
+              })
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+    
+      }
+    
     // whenever someone enters a username into this textbox, it'll activate this function
     onChangeUsername(e){
         //always use set state method in react
         this.setState({
             username: e.target.value // the target is the textbox, value is the value of the textbox
-        });
+        })
     }
 
     onChangeDescription(e){
         this.setState({
             description: e.target.value
-        });
+        })
     }
 
     onChangeDuration(e){
         this.setState({
             duration: e.target.value
-        });
+        })
     }
     
     onChangeDate(date){
         this.setState({
             date: date
-        });
+        })
     }
 
     onSubmit(e){
@@ -69,7 +78,10 @@ export default class CreateExercises extends Component{
             date: this.state.date
         }
 
-        console.log(exercise)
+        console.log(exercise);
+
+        axios.post('http://localhost:5000/exercises/add', exercise)
+        .then(res => console.log(res.data));
 
         // take the person back to our homepage, goes back to list of exercises. 
         window.location = '/';
@@ -80,7 +92,7 @@ export default class CreateExercises extends Component{
             // standard HTML form
             <div>
                 <h3>Create New Exercise Log</h3>
-                <form onsubmit = {this.onSubmi}>
+                <form onSubmit = {this.onSubmi}>
                     <div className = "form-group">
                         <label>Username: </label>
                         <select ref = "userInput"
