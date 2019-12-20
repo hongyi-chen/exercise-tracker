@@ -21,6 +21,7 @@ const uri = process.env.ATLAS_URI;
 // also passes in flags to deal with MongoDB, just put these things in
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
+
 const connection = mongoose.connection;
 // once the connection is established, this is what happens
 connection.once('open', () => {

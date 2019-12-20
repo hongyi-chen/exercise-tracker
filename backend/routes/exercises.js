@@ -34,7 +34,7 @@ router.route('/add').post((req, res) => {
 // /:id is like a variable, an object id that is created automatically my Mongo
 // this returns just the information about a specific exercise (JSON)
 // the get request
-router.route('/:id').get((reqz, res) => {
+router.route('/:id').get((req, res) => {
     Exercise.findById(req.params.id)
     .then(exercise => res.json(exercise))
     .catch(err => res.status(400).json('Error: ' + err));
