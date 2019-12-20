@@ -32,8 +32,9 @@ export default class CreateUsers extends Component{
 
         console.log(user);
 
-        // axios.post('http://localhost:5000/exercises/add', user
-        // .then(res => console.log(res.data));
+        // backend endpoint expecting JSON object
+        axios.post('http://localhost:5000/users/add', user)
+         .then(res => console.log(res.data));
 
         // take the person back to our homepage, goes back to list of exercises. 
         this.setState({
